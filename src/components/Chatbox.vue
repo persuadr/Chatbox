@@ -1,8 +1,9 @@
 <template>
   <q-card>
     <q-card-section class="q-pb-none">
-      <q-scroll-area class="q-px-md q-pt-md" style="height: 500px">
-        <message v-for="(msg, it) in messages" :key="it"
+      <q-scroll-area class="q-px-md q-pt-md" :style="'height:' + height">
+        <p-message v-for="(msg, it) in messages" :key="it"
+          :useravatar="useravatar" :username="username" :botavatar="botavatar" :botname="botname"
           :sent="msg.sent" :text="msg.text" :loading="msg.text.length === 0" :type="msg.type"/>
       </q-scroll-area>
     </q-card-section>
@@ -15,24 +16,62 @@
 </template>
 
 <script>
-import Message from './Message.vue';
+import {
+  QCard,
+  QCardActions,
+  QCardSection,
+  QScrollArea,
+  QSelect,
+} from 'quasar';
+import PMessage from './Message.vue';
 
 export default {
-  name: 'Chatbox',
+  name: 'PChatbox',
   components: {
-    Message,
+    QCard,
+    QCardActions,
+    QCardSection,
+    QScrollArea,
+    QSelect,
+    PMessage,
   },
   data() {
     return {
       messages: [{
         text: ['Hello!', 'If you would like to talk with me, just select your topic below.'],
         sent: false,
-        type: 'normal',
+        type: 'default',
       }],
       counterarg: '',
       counterargs: [{ label: 'jeifjeijriejirezi rjrizejrijeir erjiezjriejirje rezirjezirji Arg1', value: 'arg1' }],
-      token: '',
     };
+  },
+  // TODO: param color
+  props: {
+    useravatar: {
+      type: String,
+      required: true,
+    },
+    botavatar: {
+      type: [String, Object],
+      required: true,
+    },
+    botname: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    token: {
+      type: String,
+      required: true,
+    },
+    height: {
+      type: String,
+      default: '500px',
+    },
   },
   methods: {
     manageCounterarguments(args) {
