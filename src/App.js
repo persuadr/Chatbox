@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import PChatbox from './components';
+import PChatboxFactory from './components';
 
 Vue.config.productionTip = false;
 
@@ -7,7 +7,7 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  render: h => h(PChatbox, {
+  render: h => h(PChatboxFactory(true), {
     props: {
       // TODO: add avatars for testing
       useravatar: '../public/astronaut.png',
