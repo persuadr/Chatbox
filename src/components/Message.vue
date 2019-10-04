@@ -1,7 +1,7 @@
 <template>
-  <q-chat-message v-if="sent" text-color="black" size="8" :avatar="useravatar"
-    :text="text" sent class="q-mx-md" :name="username" bg-color="blue-grey-2" />
-  <q-chat-message v-else text-color="white" :avatar="botavatars" bg-color="cyan-8"
+  <q-chat-message v-if="sent" :text-color="colours.usertext" size="8" :avatar="useravatar"
+    :text="text" sent class="q-mx-md" :name="username" :bg-color="colours.userbg" />
+  <q-chat-message v-else :text-color="colours.bottext" :avatar="botavatars" :bg-color="colours.botbg"
     :text="text" class="q-mx-md" :size="loading ? '' : '8'" :name="botname">
     <q-spinner-dots size="2rem" v-if="loading"/>
   </q-chat-message>
@@ -19,7 +19,6 @@ export default {
     QChatMessage,
     QSpinnerDots,
   },
-  // TODO: param bg color and font color
   props: {
     sent: {
       type: Boolean,
@@ -47,11 +46,15 @@ export default {
     },
     botname: {
       type: String,
-      default: 'Pedro',
+      required: true,
     },
     username: {
       type: String,
-      default: 'You, the pioneer',
+      required: true,
+    },
+    colours: {
+      type: Object,
+      required: true,
     },
   },
   computed: {
