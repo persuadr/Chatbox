@@ -27,7 +27,7 @@ import axios from 'axios';
 import PMessage from './Message.vue';
 
 const axiosinst = axios.create({
-  baseURL: (process.env.NODE_ENV === 'production' ? 'https://persuadr.ai/api/' : 'http://localhost:3000/'),
+  baseURL: (process.env.NODE_ENV === 'production' ? 'https://persuadr.ai/api/' : ''),
 });
 
 export default {
@@ -98,6 +98,9 @@ export default {
     });
   },
   methods: {
+    setBaseUrl(url) {
+      axiosinst.defaults.baseURL = url;
+    },
     setToken(token) {
       axiosinst.defaults.headers.common.Authorization = `Bearer ${token}`;
     },
