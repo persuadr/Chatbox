@@ -121,11 +121,21 @@ export default {
           value: c.id,
         }));
       });
+      let m = text.shift();
       this.messages.push({
-        text,
+        text: [m],
         sent: false,
         type,
       });
+      if (text.length) {
+        const int = setInterval(() => {
+          m = text.shift();
+          this.messages[this.messages.length - 1].text.push(m);
+          if (!text.length) {
+            clearInterval(int);
+          }
+        }, 500);
+      }
     },
     async startDialogue() {
       try {

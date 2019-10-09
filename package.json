@@ -1,6 +1,6 @@
 {
   "name": "@persuadr/chatbox",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Chatbox to use on your website as a middleware between your users and Persuadr.ai API",
   "homepage": "https://github.com/persuadr/chatbox",
   "author": "Emmanuel Hadoux",
