@@ -109,11 +109,11 @@ export default {
       this.counterargs = [];
       let type = 'default';
       args.forEach((arg) => {
-        if (arg.metadata.trigger) {
+        if (arg.metadata && arg.metadata.trigger) {
           this.$emit('trigger', arg.metadata.trigger);
         }
         arg.arg.text.split('\n\n').forEach(s => text.push(s));
-        if (arg.metadata.avatartype) {
+        if (arg.metadata && arg.metadata.avatartype) {
           type = arg.metadata.avatartype;
         }
         arg.counters.forEach(c => this.counterargs.push({
