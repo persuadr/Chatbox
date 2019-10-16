@@ -109,6 +109,7 @@ export default {
       this.counterargs = [];
       let type = 'default';
       args.forEach((arg) => {
+        console.error(arg);
         if (arg.metadata && arg.metadata.trigger) {
           this.$emit('trigger', arg.metadata.trigger);
         }
@@ -154,6 +155,7 @@ export default {
         const payload = await axiosinst.post('/arg', {
           args: [{ arg: this.counterarg.value }],
         });
+        this.counterarg = '';
         if (payload.data.args.length > 0) {
           this.$_chatbox_manageCounterarguments(payload.data.args);
         } else {
