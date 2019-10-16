@@ -109,8 +109,8 @@ export default {
       this.counterargs = [];
       let type = 'default';
       args.forEach((arg) => {
-        console.error(arg);
         if (arg.metadata && arg.metadata.trigger) {
+          console.error(`Going to emit ${arg.metadata.trigger}`);
           this.$emit('trigger', arg.metadata.trigger);
         }
         arg.arg.text.split('\n\n').forEach(s => text.push(s));
